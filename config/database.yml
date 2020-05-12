@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: search-bakery_production
   username: search-bakery
   password: <%= ENV['SEARCH-BAKERY_DATABASE_PASSWORD'] %>
