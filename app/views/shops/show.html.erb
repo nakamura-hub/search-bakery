@@ -1,0 +1,53 @@
+<h1>店舗詳細</h1>
+<div class="row mb-5">
+  <div class="col-sm-6">
+    <div class="card">
+      <h3 class="card-title pl-2"><%= @shop.name %></h3>
+      <div class="card-body">
+        <p><%= @shop.address %></p>
+        <p><%= @shop.station_name %></p>
+        <p>
+          <lebel>営業時間:</lebel>
+          <%= @shop.open %>
+          &nbsp
+          <lebel>定休日:</lebel>
+          <%= @shop.close %>
+        </p>
+        <div class="text-right">
+          <% if logged_in? %>
+            <%= link_to new_review_path(id: @shop.id), class: 'btn btn-success' do %>
+              <i class="fas fa-pen"></i> レビューを書く
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <small><%= page_entries_info @reviews %></small>
+    <% @reviews.each do |review| %>
+      <div class="card mb-5">
+        <div class="card-header bg-info text-white">
+          <%= review.user.name %>
+          <div class="text-right">
+            <small><%= review.created_at.to_s(:datetime_jp) %></small>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= simple_format(review.message) %></p>
+        </div>
+        <div class="text-right">
+          <% if current_user == review.user %>
+            <%= link_to review, method: :delete, data: { confirm: "削除しますか?"}, class: 'btn btn-danger btn-sm' do %>
+              <i class="fas fa-trash-alt"></i>削除
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @reviews %>
+  </div>
+</div>

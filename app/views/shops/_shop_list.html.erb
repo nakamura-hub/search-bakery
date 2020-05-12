@@ -1,0 +1,22 @@
+<small><%= page_entries_info shops %></small>
+<hr>
+<% shops.each do |shop| %>
+<div class="row">
+  <div class="col-md-7">
+  <h3><%= link_to shop.name, shop, class: "text-warning" %></h3>
+  <p>
+    <%= shop.address %><br />
+    <%= shop.station_name %><br />
+    <lebel>営業時間:</lebel>
+    <%= shop.open %>
+    &nbsp
+    <lebel>定休日:</lebel>
+    <%= shop.close %>
+  </p>
+  </div>
+</div>
+<hr>
+<% end %>
+
+<%= paginate shops %>
+

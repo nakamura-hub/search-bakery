@@ -19,12 +19,13 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-    <%= render 'layouts/aside' %>
-
     <div class="container">
-      <%= render 'layouts/flash_messages' %>
-
+    　<%= render 'layouts/flash_messages' %>
       <%= yield %>
     </div>
   </body>
+  <hr>
+  <footer class="text-center  pt-3">
+    &copy;&nbsp<%= Time.now.year %>&nbspsearch-bakery.
+  </footer>
 </html>

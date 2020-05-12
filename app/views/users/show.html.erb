@@ -1,0 +1,53 @@
+<div class="row">
+  <aside class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+
+  <div class="col-sm-9">
+    <h1>詳細画面</h1>
+    <div class="text-right">
+      <%= link_to edit_user_path(@user) ,class: 'btn btn-success' do %>
+        <i class="fas fa-edit"></i>編集
+      <% end %>
+    </div>
+    <small><%= page_entries_info @reviews %></small>
+    <table class="table table-bordered table-striped">
+      <thead class="bg-info text-light">
+        <tr>
+          <th>店名</th>
+          <th>レビュー</th>
+          <th>投稿日時</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review|%>
+          <tr>
+            <td><%= review.shop.name %></td>
+            <td><%= simple_format(review.message) %></td>
+            <td><%= review.created_at.to_s(:datetime_jp) %></td>
+            <td>
+              <%= link_to shop_path(review.shop_id), class: 'btn btn-outline-info btn-sm' do %>
+                <i class="fas fa-search-plus"></i>詳細
+              <% end %>
+            </td>
+            <td>
+              <%= link_to review, method: :delete, data: { confirm: "削除しますか?"}, class: 'btn btn-outline-danger btn-sm' do %>
+                <i class="fas fa-trash-alt"></i> 削除
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+     </tbody>
+    </table>
+    <%= paginate @reviews %>
+  </div>
+</div>

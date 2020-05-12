@@ -29,5 +29,11 @@ module SearchBakery
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # 日本語にする対応
+    config.i18n.default_locale = :ja
+    # 日本時間にする対応
+    config.time_zone = 'Asia/Tokyo'
+    config.active_record.default_timezone = :local
   end
 end

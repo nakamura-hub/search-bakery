@@ -1,16 +1,22 @@
 <h3>Pickup</h3>
 
 <div class="row">
-    <!-- modelをループで回して、3列毎に改行 MAX件数9件(SQLで絞る) -->
-    <!-- model.each do |m| -->
-        <div class="col-sm-4">a</div>
-        <div class="col-sm-4">b</div>
-        <div class="col-sm-4">c</div>
-        <div class="col-sm-4">a</div>
-        <div class="col-sm-4">b</div>
-        <div class="col-sm-4">c</div>
-        <div class="col-sm-4">a</div>
-        <div class="col-sm-4">b</div>
-        <div class="col-sm-4">c</div>
-    <!-- end -->
+  <% @shops.each do |shop| %>
+    <div class="card col-sm-3 mb-3">
+      <h3 class="card-title pl-2"><%= link_to shop.name, shop, class: "text-warning" %></h3>
+      <div class="card-body">
+        <p><%= shop.address %></p>
+        <p><%= shop.station_name %></p>
+        <p>
+          <lebel>営業時間:</lebel>
+          <%= shop.open %>
+        </p>
+        <p>
+          <lebel>定休日:</lebel>
+          <%= shop.close %>
+        </p>
+      </div>
+    </div>
+  <div class="offset-sm-1"></div>
+  <% end %>
 </div>
