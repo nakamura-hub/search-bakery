@@ -9,6 +9,14 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @shops = Shop.search(params[:name], params[:keyword]).order(id: :desc).page(params[:page]).per(5)
+    if params[:reset]
+      @search_name = ""
+      @search_keyword = ""
+    else
+      # 値保持用インスタンス変数
+      @search_name = params[:name]
+      @search_keyword = params[:keyword]
+    end
+    @shops = Shop.search(@search_name, @search_keyword).order(id: :desc).page(params[:page]).per(5)
   end
 end
