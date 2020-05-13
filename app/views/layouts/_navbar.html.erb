@@ -9,12 +9,18 @@
         <li class="nav-item"><%= link_to '店舗検索', search_shops_path, class: "nav-link #{ 'active' if current_page?(search_shops_path)}" %></li>
         <li class="nav-item"><%= link_to '店舗一覧', shops_path, class: "nav-link #{ 'active' if current_page?(shops_path)}" %></li>
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to 'ユーザー詳細', user_path(current_user), class: "nav-link #{ 'active' if current_page?(user_path(current_user))}" %></li>
+          <% unless current_user.admin? %>
+            <li class="nav-item"><%= link_to 'ユーザー詳細', user_path(current_user), class: "nav-link #{ 'active' if current_page?(user_path(current_user))}" %></li>
+          <% end %>
         <% end %>
       </ul>
       <ul class="navbar-nav">
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: "nav-link" %></li>
+          <% unless current_user.admin? %>
+            <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: "nav-link" %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to '管理者画面', search_shop_admin_users_path, class: "nav-link" %></li>
+          <% end %>
           <li class="nav-item"><%= link_to 'ログアウト', logout_path, class: 'nav-link', method: :delete %></li>
         <% else %>
           <li class="nav-item"><%= link_to 'アカウント作成', signup_path, class: 'nav-link' %></li>

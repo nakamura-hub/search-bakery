@@ -21,28 +21,6 @@
       <li class="nav-item"><a href="<%= reviews_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(reviews_user_path(@user)) %>">レビュー一覧</a></li>
       <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り一覧</a></li>
     </ul>
-    <p>
-      <lanel>名前</lanel>
-      &nbsp;
-      <%= @user.name %>
-    </p>
-    <p>
-      <% if @user.age.present? %>
-        <lanel>年齢</lanel>
-        &nbsp;
-        <%= @user.age %>代
-      <% end %>
-    </p>
-    <p>
-      <% if @user.gender.present? %>
-        <lebel>性別</lebel>
-        &nbsp;
-        <%= @user.gender %>
-      <% end %>
-    </p>
-    <% if @user.describe.present? %>
-      <p>自己紹介</p>
-      <p><%= @user.describe %></p>
-    <% end %>
+    <%= render 'shops/shop_list', shops: @favorite_shops %>
   </div>
 </div>

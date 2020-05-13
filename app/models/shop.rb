@@ -1,7 +1,11 @@
 class Shop < ApplicationRecord
-  has_many :reviews
-  has_many :users, through: :reviews
+  has_many :reviews, dependent: :destroy
+  has_many :users, through: :reviews, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user_id, dependent: :destroy
+  
+  validates :name, :address, :station_name, :open, :close, presence: true
   
   # [メソッド]
   #  search  検索メソッド

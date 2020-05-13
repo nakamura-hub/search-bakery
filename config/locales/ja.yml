@@ -8,6 +8,10 @@ ja:
       shop:
         id: ID
         name: 店舗名
+        address: 住所
+        station_name: 最寄り駅
+        open: 営業時間
+        close: 定休日
         created_at: 登録日時
         updated_at: 更新日時
       user:

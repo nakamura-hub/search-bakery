@@ -13,6 +13,14 @@
     <lebel>定休日:</lebel>
     <%= shop.close %>
   </p>
+  <% if logged_in? %>
+    <% unless current_user.admin? %>
+      <%= render 'favorites/favorite_button', shop: shop %>
+      <%= link_to new_review_path(id: shop.id), class: 'btn btn-success mt-3' do %>
+        <i class="fas fa-pen"></i> レビューを書く
+      <% end %>
+    <% end %>
+  <% end %>
   </div>
 </div>
 <hr>

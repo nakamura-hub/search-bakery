@@ -29,6 +29,18 @@
       <%= form.label :email, 'メールアドレス' %>
       <%= form.text_field :email, class: "form-control"%>
     </div>
+    <div class="form-group">
+      <%= form.label :age, '年齢', class:'form-lebel' %>
+      <%= form.select :age, [["10代","10"], ["20代","20"], ["30代","30"], ["40代","40"], ["50代","50"], ["60代","60"]], { include_blank: true, selected: 1 }, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :gender, '性別', class:'form-lebel' %>
+      <%= form.select :gender, [["女性","女性"], ["男性","男性"]] , { include_blank: true, selected: 1 }, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :describe, '自己紹介文' %>
+      <%= form.text_field :describe, class: "form-control"%>
+    </div>
     <div class="panel panel-default collaps">
       <a href="#pass" data-toggle="collapse" class="btn btn-success">パスワード変更</a>
     </div>
@@ -44,7 +56,13 @@
     　</div>
     </div>
     <br />
+    <%= link_to '戻る', @user, class: "btn btn-success" %>
     <%= form.submit '変更確定', class: "btn btn-primary" %>
+  <% end %>
+  <% unless current_user.admin? %>
+    <div class="text-right">
+      <%= link_to '退会', @user, method: :delete, data: { confirm: "本当に退会しますか？"}, class: 'btn btn-danger mt-3' %>
+    </div>
   <% end %>
 </div>
 </div>

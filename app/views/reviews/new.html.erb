@@ -4,11 +4,11 @@
 <% if logged_in? %>
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-<%= form_with(model: @review, local: true) do |form| %>
-  <%= hidden_field_tag :id, @shop.id %>
-  <%= form.text_area :message, size: "20x10", class: "form-control" %><br />
-  <%= form.submit '投稿', class: "btn btn-primary" %>
-<% end %>
+    <%= form_with(model: @review, local: true) do |form| %>
+      <%= hidden_field_tag :id, @shop.id %>
+      <%= form.text_area :message, size: "20x10", class: "form-control" %><br />
+      <%= form.submit '投稿', class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 <% end %>
